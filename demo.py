@@ -34,39 +34,44 @@ if __name__ == "__main__":
         #	1	1	1	1	1	10	9	8	7	6	5	4	3	2	1	
         #							256	128	64	32	16	8	4	2	1
         
-        algorithm_param = {
-            "max_num_iteration": 30,
-            "population_size": 15,
-            "mutation_probability": 0.3,
-            "elit_ratio": 13.9,
-            "crossover_probability": 1.0,
-            "parents_portion": 0.3,
+        ga_config = {
+            "max_num_iteration": 5,
+            "population_size": 100,
+            "mutation_probability": 0.01,
+            "elit_ratio": 2,
+            "crossover_probability": 0.8,
+            "parents_portion": 0.2,
             "crossover_type": "uniform",
             "max_iteration_without_improv": 20,
             "multiple_cpu": False,
         }
 
+        class GA_test(GA):
+            def fitness_function(self, values):
+                return sum(values)
+
+            def individual_condition(self, individual):
+                if individual[1] > individual[0]*2:
+                    return True
+                else:
+                    return False
 
 
-        model = GA(function=test_ga_function,\
+
+        model = GA_test(function=test_ga_function,\
                             dimension=3,\
                             variable_type='int',\
                             variable_boundaries=varbound,\
-                            algorithm_parameters=algorithm_param,\
-                            live_plot = True)
+                            ga_config=ga_config,\
+                            live_plot = False)
         
-        # set condition
-        def check_ind(ind):
-            if ind[1] > ind[2] + 5:
-                return True
-            else:
-                return False
+
         
-        model.ind_condition = check_ind
+        # model.ind_condition = check_ind
 
         model.init_pop = [[0,9999,999],
                         [0,1111,505],
-                        [0,9888,9099]]
+                        [785,2654,1896]]
 
         model.run()
         
@@ -74,8 +79,6 @@ if __name__ == "__main__":
         model.plot_ga(prints=True)
         
         print("best result", model.all_generations[-1][-1])
-
-
 
         # save csv
         if False:
