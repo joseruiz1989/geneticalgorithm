@@ -3,6 +3,8 @@
 Genetic Algorithm library.
 Our GA library is configured to maximize the fitness function
 
+demo.py contains the example described here
+
 ### Run a optimization
 
 In this simple example, we will optimize (maximize) an individual composed of three values between 0 and 10000, the fitness_function is the sum of the three values
