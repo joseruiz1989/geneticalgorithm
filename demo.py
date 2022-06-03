@@ -26,9 +26,6 @@ if __name__ == "__main__":
             "multiple_cpu": False,
         }
 
-        varbound=([[0,10000]]*3)
-        # varbound=([[100,1000], [10,100], [10,2000]])
-
         class GA_test(GA):
             def fitness_function(self, values):
                 return sum(values)
@@ -38,6 +35,10 @@ if __name__ == "__main__":
                     return True
                 else:
                     return False
+        
+        varbound=([[0,10000]]*3)
+        # varbound=([[100,1000], [10,100], [10,2000]])
+
 
         model = GA_test(dimension=3,\
                         variable_type='int',\
@@ -54,29 +55,5 @@ if __name__ == "__main__":
         print("\n********** starting to plot")
         model.plot_ga(prints=True)
         
-        print("best result", model.all_generations[-1][-1])
-
-        # save csv
-        if False:
-            for i in range(len(model.all_generations)):
-                for j in range(len(model.all_generations[i])):
-                    ger = i + 1
-
-                    fit = model.all_generations[i][j][0][0]
-                    ene = model.all_generations[i][j][0][1]
-                    osc = model.all_generations[i][j][0][2]
-
-                    ind = model.all_generations[i][j][1][0][0]
-
-                    org = model.all_generations[i][j][1][0][1][0]
-                    pa1 = model.all_generations[i][j][1][0][1][1]
-                    pa2 = model.all_generations[i][j][1][0][1][2]
-                
-
-                    # print(ger,"-", ind, "-", fit, "-", org)
-            
-                    model.csv_df_document = add_to_df(model.csv_df_document, [ger, ind, fit, ene, osc, org, pa1, pa2])
-            
-            now = datetime.datetime.now()
-            csv_name = "C:/PD/zz_test_GA_{:04d}_{:02d}_{:02d}_{:02d}_{:02d}_{:02d}_{:05d}_otim.csv".format(now.year, now.month, now.day, now.hour, now.minute, now.second, random.randint(10000, 99999))
-            model.csv_df_document.to_csv (csv_name, index= False, header= False, line_terminator='\n')
+        print("best result fitness:", model.all_generations[-1][-1][0])
+        print("best result individual", model.all_generations[-1][-1][1][0])
