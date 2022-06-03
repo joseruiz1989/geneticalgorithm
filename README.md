@@ -1,6 +1,7 @@
 # geneticalgorithm
 
 Genetic Algorithm library.
+
 Our GA library is configured to maximize the fitness function
 
 demo.py contains the example described here
@@ -53,6 +54,7 @@ class GA_test(GA):
 The **individual_condition** must to return a boolean value, in our case, the restriction is that the second number must be at less twice the first number
 
 The next step is to define the limits of the values of the individual, they must be defined as a list of lists containing the minimum and the maximum. For our case of an individual with 3 values it would be:
+
 [ [min0, max0], [min1, max1], [min2, max2] ]
 
 ```
@@ -71,7 +73,9 @@ model = GA_test(dimension=3,\
 *Parameters definitions at the end of this document
 
 As an additional step, we can create an initial population for our genetic algorithm.
+
 The individuals of the initial population have to be defined as a list of lists.
+
 In the first generation they will be included as long as they are within the limits of the established values and that they meet the individual_condition if it was previously established.
 
 
