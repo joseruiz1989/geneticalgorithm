@@ -1,38 +1,20 @@
 from GeneticAlgorithm import GeneticAlgorithm as GA
 from GeneticAlgorithm import *
 
-def test_ga_function(values):
-	# print(values)
-	sumita = 1
-	# for i in range(50):
-		# sumita = sumita **1.0001
-	return [values, [sum(values[0]), 10, 20]]
-	
-	
-
 if __name__ == "__main__":
     cores=cpu_count()
     print("cores: ", cores)
 
 
     # 1 = test GA
-    # 2 = run ga fortran
 
     run_option = 1
 
 
     if run_option == 1:
-        print("run option 1")
+        print("running option 1...")
         varbound=([[0,10000]]*3)
-        # varbound=([[100,1500], [100,1500], [10,1500]])
-        
-        # 100	128		7 
-        # 300	512		9
-        # 50	64		6
-        # 				22
-        #									1	1	0	0	1	0	0
-        #	1	1	1	1	1	10	9	8	7	6	5	4	3	2	1	
-        #							256	128	64	32	16	8	4	2	1
+        # varbound=([[100,1000], [10,100], [10,2000]])
         
         ga_config = {
             "max_num_iteration": 5,
@@ -56,26 +38,19 @@ if __name__ == "__main__":
                 else:
                     return False
 
-
-
-        model = GA_test(function=test_ga_function,\
-                            dimension=3,\
-                            variable_type='int',\
-                            variable_boundaries=varbound,\
-                            ga_config=ga_config,\
-                            live_plot = False)
+        model = GA_test(dimension=3,\
+                        variable_type='int',\
+                        variable_boundaries=varbound,\
+                        ga_config=ga_config,\
+                        live_plot = False)
         
-
-        
-        # model.ind_condition = check_ind
-
         model.init_pop = [[0,9999,999],
                         [0,1111,505],
                         [785,2654,1896]]
 
         model.run()
         
-        print("\n********** starting plot")
+        print("\n********** starting to plot")
         model.plot_ga(prints=True)
         
         print("best result", model.all_generations[-1][-1])

@@ -2,8 +2,6 @@
 
 
 
-
-
 "max_num_iteration": int -> number of iterations ou generations
 "population_size": int -> number of individuals in each generation
 "mutation_probability": float between 0 and 1, where 0 is 0% and 1 is 100%
@@ -71,7 +69,7 @@ import tqdm, datetime, time
 
 
 class GeneticAlgorithm():
-    def __init__(self, function, dimension,	variable_type, \
+    def __init__(self, dimension,	variable_type, \
         variable_boundaries, ga_config={'max_num_iteration': 50,\
                 'population_size':100,\
                 'mutation_probability':0.1,\
@@ -85,7 +83,6 @@ class GeneticAlgorithm():
                 live_plot = False):
         
         self.folder_path = "C:/PD/sims/"
-        self.function = function
         self.dimension = dimension
         self.variable_type = variable_type
         self.variable_boundaries = variable_boundaries
