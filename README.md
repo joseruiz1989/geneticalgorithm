@@ -46,6 +46,7 @@ The parameters are:
   - percent of new population to be filled by sons 
 
 > ex: population:100
+> 
 > elit_ratio = 2
 > parents_portion = 0.1
 > crossover_probability = 0.9
