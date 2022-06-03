@@ -13,9 +13,7 @@ if __name__ == "__main__":
 
     if run_option == 1:
         print("running option 1...")
-        varbound=([[0,10000]]*3)
-        # varbound=([[100,1000], [10,100], [10,2000]])
-        
+
         ga_config = {
             "max_num_iteration": 5,
             "population_size": 100,
@@ -27,6 +25,9 @@ if __name__ == "__main__":
             "max_iteration_without_improv": 20,
             "multiple_cpu": False,
         }
+
+        varbound=([[0,10000]]*3)
+        # varbound=([[100,1000], [10,100], [10,2000]])
 
         class GA_test(GA):
             def fitness_function(self, values):
