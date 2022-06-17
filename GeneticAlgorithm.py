@@ -1,9 +1,4 @@
 """
-
-
-
-
-
 "max_num_iteration": int -> number of iterations ou generations
 "population_size": int -> number of individuals in each generation
 "mutation_probability": float between 0 and 1, where 0 is 0% and 1 is 100%
@@ -41,16 +36,22 @@
 
 
 ########################################
-
 ind:list = fitness, [individual information]
 fitness:floar = number
 individual information:list = individual_values: list, ['rand', parent1:list, parent2:list]
 
-
 """
 
+import traceback
+
 ### libraries from our GA code
-from utils_ga import *
+try:
+    from utils_ga import *
+except Exception:
+    try:
+        from .utils_ga import *
+    except Exception:
+        traceback.print_exc()
 
 ### common libraries
 import pandas as pd
