@@ -37,7 +37,7 @@
 
 ########################################
 ind:list = fitness, [individual information]
-fitness:floar = number
+fitness:float = number
 individual information:list = individual_values: list, ['rand', parent1:list, parent2:list]
 
 """
@@ -72,7 +72,7 @@ import tqdm, datetime, time
 
 
 class GeneticAlgorithm():
-    def __init__(self, function, dimension,	variable_type, \
+    def __init__(self, dimension,	variable_type, \
         variable_boundaries, ga_config={'max_num_iteration': 50,\
                 'population_size':100,\
                 'mutation_probability':0.1,\
@@ -86,7 +86,6 @@ class GeneticAlgorithm():
                 live_plot = False):
         
         self.folder_path = "C:/PD/sims/"
-        self.function = function
         self.dimension = dimension
         self.variable_type = variable_type
         self.variable_boundaries = variable_boundaries
